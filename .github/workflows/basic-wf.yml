@@ -3,7 +3,7 @@
 name: vars and secrets
 
 env:
-  WF_VAR: 'Workflow_level_var"
+  WF_VAR: "Workflow_level_var"
 
 # Controls when the workflow will run
 on:
