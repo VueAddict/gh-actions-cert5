@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BOOLEAN: ${{ false }}
-      NULL: ${{ null }}
+      # NULL: ${{ null }}
       NUM: ${{ 12 }}
 
     steps:
