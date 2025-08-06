@@ -18,8 +18,34 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  test_expressions:
+    runs-on: ubuntu-latest
+    env:
+      BOOLEAN: ${{ false }}
+      NULL: ${{ null }}
+      NUM: ${{ 12 }}
+
+    steps:
+     - name: test null
+       if: (env.NULL == null)
+       run: echo var is null
+       
+     - name: test boolean
+       if: (${{ fromJSON(env.BOOLEAN) }})
+       run: echo var is bool and not run
+       
+     - name: test num
+       if: (${{ env.NUM == 12 && success() }})
+       run: sleep(60)
+       
+     - name: cancelled
+       if: ${{ cancelled() }}
+       run: echo job is cancelled
+      
+       
   # This workflow contains a single job called "build"
   test-vars:
+    if: (github.event_name == 'pull_request')
     env:
       JOB_VAR: "Job_Level_Var"
     # The type of runner that the job will run on
