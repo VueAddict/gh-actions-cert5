@@ -27,15 +27,15 @@ jobs:
 
     steps:
      - name: test null
-       if: (env.NULL == null)
+       if: ${{env.NULL == null}}
        run: echo var is null
        
      - name: test boolean
-       if: (${{ fromJSON(env.BOOLEAN) }})
+       if: ${{ fromJSON(env.BOOLEAN) }}
        run: echo var is bool and not run
        
      - name: test num
-       if: (${{ env.NUM == 12 && success() }})
+       if: ${{ env.NUM == 12 && success() }}
        run: sleep(60)
        
      - name: cancelled
